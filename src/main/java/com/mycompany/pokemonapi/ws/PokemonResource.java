@@ -22,27 +22,28 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Named
-@Path("/")
+@Path("cadastrar")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class PokemonResource {
+    
     @Inject
     private PokemonService pokemonService;
 
     @GET
-    @Path("/listar")
+    @Path("listar")
     public List<Pokemon> listarPessoas() {
         return pokemonService.findAll();
     }
 
     @GET
-    @Path("/buscar/{codigo}")
+    @Path("buscar/{codigo}")
     public Pokemon listarPessoas(@PathParam("codigo") Long codigo) {
         return pokemonService.findById(codigo);
     }
 
     @POST
-    @Path("/cadastrar")
+    @Path("cadastrar")
     public Response salvar(Pokemon pessoa) {
         try {
             pokemonService.save(pessoa);
